@@ -1,0 +1,46 @@
+#login {
+  background: linear-gradient(71deg, #feaf00 19.35%, #f8d442 90.12%);
+}
+#login .login-h1 h1 {
+  font-size: 24px;
+  font-weight: bold;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 35px;
+    background-color: #f8d442;
+    margin-right: 10px;
+  }
+}
+#login h3 {
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+#login span {
+  color: #6c6c6c;
+  font-size: 14px;
+}
+
+#login label {
+  color: #6c6c6c;
+}
+#login input {
+  border: 1px solid #e5e5e5;
+  &::placeholder {
+    color: #cdcdcd;
+  }
+}
+
+#login .sign-btn {
+  background-color: #feaf00;
+
+  &:hover {
+    background-color: #fcbd35;
+  }
+}
