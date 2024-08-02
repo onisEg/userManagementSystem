@@ -8,6 +8,8 @@ import UserList from "./Components/UserList/UserList";
 import UserData from "./Components/UserData/UserData";
 import Profile from "./Components/Profile/Profile";
 import Notfound from "./Components/Notfound/Notfound";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const routes = createBrowserRouter([
@@ -34,6 +36,7 @@ function App() {
   ]);
   return (
     <>
+      <ToastContainer />
       <RouterProvider router={routes}></RouterProvider>
     </>
   );

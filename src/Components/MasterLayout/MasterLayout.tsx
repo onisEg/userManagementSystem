@@ -1,21 +1,21 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "../Sidebar/Sidebar";
+import Sidebar from "../Sidebar/Sidbar";
 import Navbar from "../Navbar/Navbar";
 
 export default function MasterLayout() {
   return (
     <>
       <div>
-        <div className="row">
-          <div className="col-md-3 bg-info vh-100">
-            <Sidebar/>
+        <div className="d-flex">
+          <div className="">
+            <Sidebar />
           </div>
-          <div className="col-md-9 ">
-            <Navbar/>
-            <Outlet/>
+          <div className="w-100 ">
+            <Navbar />
+            <Outlet />
           </div>
         </div>
-    </div>
+      </div>
     </>
-  )
+  );
 }
