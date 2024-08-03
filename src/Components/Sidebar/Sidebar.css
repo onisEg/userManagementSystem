@@ -1,0 +1,34 @@
+/* Sidebar.css */
+
+.sidebarContainer {
+  background-color: #f2eae1;
+  height: 100vh; /* Full viewport height */
+  padding: 15px; /* Padding for inner spacing */
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarContainer .selectedUser img {
+  border-radius: 50%;
+}
+
+.sidebarContainer .selectedUser .role {
+  font-size: 14px;
+  color: #feaf00;
+}
+.ps-sidebar-container {
+  background-color: transparent !important;
+}
+/* =========================================== */
+.ps-active {
+  background: #feaf00;
+  border-radius: 5px;
+  color: white;
+}
+.ps-menu-button {
+  border-radius: 5px;
+  margin-top: 10px;
+  &:hover {
+    background-color: #feaf00 !important;
+  }
+}

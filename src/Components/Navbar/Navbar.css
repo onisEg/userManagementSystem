@@ -1,0 +1,13 @@
+.navbar .search {
+  border: 1px solid #c4c4c4;
+}
+.navbar .search input {
+  border: 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+.navbar i {
+  color: #c4c4c4;
+}

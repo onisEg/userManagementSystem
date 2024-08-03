@@ -11,12 +11,14 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  let onSubmit = (data: any) => {
+  let onSubmit = async (data: any) => {
     try {
-      let response = axios.post("https://dummyjson.com/auth/login", data);
-      console.log(response);
-      navigate("/dashboard");
-      toast.success("Login sccess!");
+      let response = await axios.post("https://dummyjson.com/auth/login", data);
+      // console.log(response);
+      if (response.status == 200) {
+        navigate("/dashboard");
+        toast.success("Login sccess!");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +45,9 @@ export default function Login() {
                 className="form-control"
                 id="exampleFormControlInput1"
                 placeholder="Enter your username"
-                {...register("username", { required: "Enter username" })}
+                {...register("username", {
+                  required: "Enter username",
+                })}
               />
 
               {errors.username && (
