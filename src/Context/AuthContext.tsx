@@ -4,8 +4,8 @@ import { createContext, useEffect, useState } from "react";
 export let AuthContext = createContext(null);
 
 export default function AuthContextProvider(props: any) {
-  const [userData, setUserData] = useState(null);
-  let saveUserData = () => {
+  const [userData, setUserData]: any = useState(null);
+  let saveUserData = (): any => {
     let encodedToken: any = localStorage.getItem("userToken");
     let decodedToken: any = jwtDecode(encodedToken);
     setUserData(decodedToken);

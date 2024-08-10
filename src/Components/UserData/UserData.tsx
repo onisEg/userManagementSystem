@@ -7,8 +7,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 export default function UserData() {
-  const [userInfo, setUserInfo]: any = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading]: any = useState(false);
   let { userId } = useParams();
   let navigate = useNavigate();
 
@@ -16,6 +15,7 @@ export default function UserData() {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   }: any = useForm();
   let onSubmit = async (data: any) => {
     try {
@@ -25,7 +25,7 @@ export default function UserData() {
         res = await axios.put(`https://dummyjson.com/users/${userId}`, data);
         toast.success("User updated successfully!");
       } else {
-        // add
+        // add new user
         res = await axios.post("https://dummyjson.com/users/add", data);
         console.log(res.data);
         toast.success("user added successfully!");
@@ -39,15 +39,21 @@ export default function UserData() {
 
   useEffect(() => {
     if (userId) {
-      getUserDataById();
+      getUserDataById(userId);
     }
   }, [userId]);
 
-  const getUserDataById = async () => {
+  const getUserDataById = async (id: any) => {
     setIsLoading(true);
     try {
-      const res = await axios.get(`https://dummyjson.com/users/${userId}`);
-      setUserInfo(res.data);
+      const res = await axios.get(`https://dummyjson.com/users/${id}`);
+      const userInfo = res.data;
+      setValue("firstName", userInfo.firstName);
+      setValue("lastName", userInfo.lastName);
+      setValue("email", userInfo.email);
+      setValue("phone", userInfo.phone);
+      setValue("age", userInfo.age);
+      setValue("birthDate", formatDate(userInfo.birthDate));
       toast.success("get userInfo by id successfully!");
       setIsLoading(false);
     } catch (error) {
@@ -85,7 +91,6 @@ export default function UserData() {
                 <div className=" ">
                   <label className="form-label">First Name</label>
                   <input
-                    defaultValue={userInfo.firstName || ""}
                     type="text"
                     className="form-control"
                     id="exampleFormControlInput1"
@@ -106,7 +111,6 @@ export default function UserData() {
                 <div className=" ">
                   <label className="form-label">Last Name</label>
                   <input
-                    defaultValue={userInfo.lastName || ""}
                     type="text"
                     className="form-control"
                     id="exampleFormControlInput1"
@@ -127,7 +131,6 @@ export default function UserData() {
                 <div className=" ">
                   <label className="form-label">Email</label>
                   <input
-                    defaultValue={userInfo.email || ""}
                     type="email"
                     className="form-control"
                     id="exampleFormControlInput1"
@@ -151,7 +154,6 @@ export default function UserData() {
                 <div className=" ">
                   <label className="form-label">Phone Number</label>
                   <input
-                    defaultValue={userInfo.phone || ""}
                     type="tel"
                     className="form-control"
                     id="exampleFormControlInput1"
@@ -172,7 +174,6 @@ export default function UserData() {
                 <div className=" ">
                   <label className="form-label">Age</label>
                   <input
-                    defaultValue={userInfo.age || ""}
                     type="number"
                     className="form-control"
                     id="exampleFormControlInput1"
@@ -191,9 +192,6 @@ export default function UserData() {
                 <div className=" ">
                   <label className="form-label">Birth Date</label>
                   <input
-                    defaultValue={
-                      userInfo.birthDate ? formatDate(userInfo.birthDate) : ""
-                    }
                     type="date"
                     className="form-control"
                     id="exampleFormControlInput1"

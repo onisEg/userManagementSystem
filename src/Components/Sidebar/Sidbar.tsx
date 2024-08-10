@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 export default function Sidbar() {
-  const [user, setUser]:any = useState({});
+  const [user, setUser]: any = useState({});
   let { userData }: any = useContext(AuthContext);
   const [activeItem, setActiveItem] = useState("users");
   const [isCollaps, setIsCollaps] = useState(false);
@@ -22,7 +22,6 @@ export default function Sidbar() {
     try {
       const res = await axios.get(`https://dummyjson.com/users/${userData.id}`);
       setUser(res.data);
-      toast.success("get userInfo by id successfully!");
     } catch (error) {
       toast.error(`Error fetching userInfo data! ${error}`);
     }
