@@ -3,3 +3,10 @@
 body {
   font-family: "Montserrat", sans-serif;
 }
+
+.text-yellow {
+  color: #feaf00;
+}
+.bg-yellow {
+  background-color: #feaf00;
+}

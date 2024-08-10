@@ -1,0 +1,34 @@
+.form-body {
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.1);
+}
+.form-body form {
+  background-color: #858585;
+}
+.form-body form label {
+  color: #6c6c6c;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.form-body form input {
+  padding: 10px 10px;
+  border-radius: 5px;
+  border: 1px solid #e5e5e5;
+  background: #f8f8f8;
+  &::placeholder {
+    color: #6c6c6c;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+.form-body a{
+    color: #6c6c6c;
+}

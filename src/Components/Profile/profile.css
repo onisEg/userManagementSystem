@@ -1,0 +1,10 @@
+#profile-form .form-body {
+  position: relative;
+}
+#profile-form .form-body img {
+  position: absolute;
+  bottom: 90%;
+  left: 45%;
+  border-radius: 50%;
+  box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.1);
+}

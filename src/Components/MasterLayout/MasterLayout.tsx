@@ -7,7 +7,7 @@ export default function MasterLayout() {
   return (
     <>
       <div>
-        <div className="d-flex">
+        <div className="d-flex" style={{ backgroundColor: "#f2eae1" }}>
           <div className="">
             <Sidebar />
           </div>

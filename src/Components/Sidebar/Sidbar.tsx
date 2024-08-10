@@ -1,32 +1,62 @@
 import { Menu, MenuItem, Sidebar } from "react-pro-sidebar";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Context/AuthContext";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 export default function Sidbar() {
-  const [activeItem, setActiveItem] = useState("home");
+  const [user, setUser]:any = useState({});
+  let { userData }: any = useContext(AuthContext);
+  const [activeItem, setActiveItem] = useState("users");
+  const [isCollaps, setIsCollaps] = useState(false);
 
+  let toggleCollapse = () => {
+    setIsCollaps(!isCollaps);
+  };
   const handleItemClick = (item: any) => {
     setActiveItem(item);
   };
+  const getUserDataById = async () => {
+    try {
+      const res = await axios.get(`https://dummyjson.com/users/${userData.id}`);
+      setUser(res.data);
+      toast.success("get userInfo by id successfully!");
+    } catch (error) {
+      toast.error(`Error fetching userInfo data! ${error}`);
+    }
+  };
+  useEffect(() => {
+    getUserDataById();
+  }, []);
+
   return (
     <>
-      <div className="sidebarContainer vh-100">
-        <div className="logo p-2">
-          <img className="img-fluid" src="/LogoUMS.png" alt="user" />
-        </div>
-        <div className="selectedUser  flex-column text-center my-5">
-          <img src="/pexels-photo-2379004.png" alt="" />
-          <h3 className="fw-bold text-capitalize mt-3">anas</h3>
-          <span className="role ">Admin</span>
-        </div>
-        <Sidebar>
+      <div className="sidebarContainer vh-100 ">
+        <Sidebar collapsed={isCollaps}>
+          <div className="logo   text-end my-2">
+            {isCollaps ? (
+              <a onClick={toggleCollapse} className="btn  " href="#">
+                <i className="fa-regular fa-circle-right fa-2x "></i>
+              </a>
+            ) : (
+              <a onClick={toggleCollapse} className="btn  " href="#">
+                <i className="fa-regular fa-circle-left fa-2x"></i>
+              </a>
+            )}
+          </div>
+          <div className="selectedUser  flex-column text-center my-5">
+            <img className="img-fluid" src={user?.image} alt="" />
+            <h3 className="fw-bold text-capitalize mt-3">{user?.firstName}</h3>
+            <h6 className="text-yellow text-capitalize">{user?.role}</h6>
+          </div>
           <Menu>
             <MenuItem
               active={activeItem === "home"}
               onClick={() => handleItemClick("home")}
               icon={<i className="bi bi-house-door"></i>}
-              component={<Link to="/dashboard" />}
+              component={<Link to="/dashboard/home" />}
             >
               Home
             </MenuItem>
@@ -34,7 +64,7 @@ export default function Sidbar() {
               active={activeItem === "users"}
               onClick={() => handleItemClick("users")}
               icon={<i className="bi bi-bookmark"></i>}
-              component={<Link to="/dashboard/users" />}
+              component={<Link to="/dashboard" />}
             >
               Users
             </MenuItem>
@@ -54,12 +84,15 @@ export default function Sidbar() {
             >
               profile
             </MenuItem>
+            <MenuItem
+              icon={<i className=" bi bi-box-arrow-right"></i>}
+              component={<Link to="/" />}
+              className="text-danger fw-bold"
+            >
+              Logout
+            </MenuItem>
           </Menu>
         </Sidebar>
-        <Link to="../login" className="d-flex m-auto btn text-danger">
-          <span className="mx-3">Logout</span>
-          <i className="bi bi-box-arrow-right"></i>
-        </Link>
       </div>
     </>
   );

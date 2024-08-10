@@ -9,9 +9,7 @@ export default function Navbar() {
             className="collapse d-flex justify-content-between navbar-collapse"
             id="navbarTogglerDemo03"
           >
-            <a className="btn" href="#">
-              <img src="/caret-circle-down.png" alt="" />
-            </a>
+           <img className="img-fluid" src="/LogoUMS.png" alt="user" />
             <div className="d-flex align-items-center mx-4">
               <div className="search  d-flex align-items-center form-control mx-3">
                 <input type="text" className="" placeholder="Search..." />

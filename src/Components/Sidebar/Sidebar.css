@@ -3,18 +3,19 @@
 .sidebarContainer {
   background-color: #f2eae1;
   height: 100vh; /* Full viewport height */
-  padding: 15px; /* Padding for inner spacing */
-  display: flex;
-  flex-direction: column;
+  padding: 0 10px;
 }
 
 .sidebarContainer .selectedUser img {
   border-radius: 50%;
 }
-
+.sidebarContainer nav {
+    /* margin: 0 10px; */
+}
 .sidebarContainer .selectedUser .role {
   font-size: 14px;
-  color: #feaf00;
+  color: #855c03;
+  background-color: black !important;
 }
 .ps-sidebar-container {
   background-color: transparent !important;

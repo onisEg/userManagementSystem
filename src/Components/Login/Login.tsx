@@ -3,24 +3,28 @@ import "./Login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { AuthContext } from "../../Context/AuthContext";
 
 export default function Login() {
+  let { saveUserData }: any = useContext(AuthContext);
   let navigate = useNavigate();
   let {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  }: any = useForm();
   let onSubmit = async (data: any) => {
     try {
       let response = await axios.post("https://dummyjson.com/auth/login", data);
-      // console.log(response);
+      localStorage.setItem("userToken", response.data.token);
       if (response.status == 200) {
         navigate("/dashboard");
         toast.success("Login sccess!");
+        saveUserData();
       }
     } catch (error) {
-      console.log(error);
+      toast.error(`${error}`);
     }
   };
   return (
@@ -49,6 +53,7 @@ export default function Login() {
                   required: "Enter username",
                 })}
               />
+              <small style={{ color: "#aaa" }}>EX: emilys</small>
 
               {errors.username && (
                 <small className="text-danger">{errors.username.message}</small>
@@ -63,6 +68,7 @@ export default function Login() {
                 placeholder="Enter your password"
                 {...register("password", { required: "Enter password" })}
               />
+              <small style={{ color: "#aaa" }}>EX: emilyspass</small>
               {errors.password && (
                 <small className="text-danger">{errors.password.message}</small>
               )}
