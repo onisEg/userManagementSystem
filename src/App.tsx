@@ -4,7 +4,7 @@ import Home from "./Components/Home/Home";
 import AuthLayout from "./Components/AuthLayout/AuthLayout";
 import Login from "./Components/Login/Login";
 import MasterLayout from "./Components/MasterLayout/MasterLayout";
-import UserList from "./Components/UserList/userList";
+import UserList from "./Components/UserList/UserList";
 import Profile from "./Components/Profile/Profile";
 import Notfound from "./Components/Notfound/Notfound";
 import { ToastContainer } from "react-toastify";
