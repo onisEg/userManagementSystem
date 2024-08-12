@@ -45,7 +45,7 @@ export default function Login() {
             <div className="mb-3">
               <label className="form-label">username</label>
               <input
-                value={"emilys"}
+                value="emilys"
                 type="text"
                 className="form-control"
                 id="exampleFormControlInput1"
@@ -63,7 +63,7 @@ export default function Login() {
             <div className="my-3">
               <label className="form-label">Password</label>
               <input
-                value={"emilyspass"}
+                value="emilyspass"
                 type="text"
                 className="form-control"
                 id="exampleFormControlInput1"
