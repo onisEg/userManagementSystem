@@ -45,6 +45,7 @@ export default function Login() {
             <div className="mb-3">
               <label className="form-label">username</label>
               <input
+                value={"emilys"}
                 type="text"
                 className="form-control"
                 id="exampleFormControlInput1"
@@ -53,7 +54,7 @@ export default function Login() {
                   required: "Enter username",
                 })}
               />
-              <small style={{ color: "#aaa" }}>EX: emilys</small>
+              {/* <small style={{}}>use this username : " emilys "</small> */}
 
               {errors.username && (
                 <small className="text-danger">{errors.username.message}</small>
@@ -62,13 +63,14 @@ export default function Login() {
             <div className="my-3">
               <label className="form-label">Password</label>
               <input
+                value={"emilyspass"}
                 type="text"
                 className="form-control"
                 id="exampleFormControlInput1"
                 placeholder="Enter your password"
                 {...register("password", { required: "Enter password" })}
               />
-              <small style={{ color: "#aaa" }}>EX: emilyspass</small>
+              {/* <small style={{ color: "#aaa" }}>EX: emilyspass</small> */}
               {errors.password && (
                 <small className="text-danger">{errors.password.message}</small>
               )}
