@@ -1,5 +1,5 @@
 import { Menu, MenuItem, Sidebar } from "react-pro-sidebar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Sidebar.css";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext";
@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 export default function Sidbar() {
+  let navigate = useNavigate()
   const [user, setUser]: any = useState({});
   let { userData }: any = useContext(AuthContext);
   const [activeItem, setActiveItem] = useState("users");
@@ -29,7 +30,10 @@ export default function Sidbar() {
   useEffect(() => {
     getUserDataById();
   }, []);
-
+  let logout = () => {
+    localStorage.removeItem("userToken");
+    navigate('/')
+}
   return (
     <>
       <div className="sidebarContainer vh-100 ">
@@ -85,7 +89,8 @@ export default function Sidbar() {
             </MenuItem>
             <MenuItem
               icon={<i className=" bi bi-box-arrow-right"></i>}
-              component={<Link to="/" />}
+              onClick={logout}
+              //remove token
               className="text-danger fw-bold"
             >
               Logout
